@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tun-Yuan Chang | Home</title>
-    <link>https://tunyuanchang.github.io/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Tun-Yuan Chang | Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://tunyuanchang.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About Me</title>
-      <link>https://tunyuanchang.github.io/page/intro/</link>
+      <link>http://localhost:1313/page/intro/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://tunyuanchang.github.io/page/intro/</guid>
+      <guid>http://localhost:1313/page/intro/</guid>
       <description>Welcome to Tun-Yuan&amp;rsquo;s personal website!</description>
     </item>
   </channel>

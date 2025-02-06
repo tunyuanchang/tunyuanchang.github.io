@@ -2,18 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://tunyuanchang.github.io/page/intro/</loc>
+    <loc>http://localhost:1313/page/intro/</loc>
   </url><url>
-    <loc>https://tunyuanchang.github.io/post/</loc>
+    <loc>http://localhost:1313/post/</loc>
     <lastmod>2024-07-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tunyuanchang.github.io/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2024-07-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tunyuanchang.github.io/archives/</loc>
+    <loc>http://localhost:1313/archives/</loc>
   </url><url>
-    <loc>https://tunyuanchang.github.io/page/</loc>
+    <loc>http://localhost:1313/page/</loc>
   </url><url>
-    <loc>https://tunyuanchang.github.io/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
   </url>
 </urlset>
