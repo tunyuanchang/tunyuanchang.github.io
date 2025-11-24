@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/tunyuanchang.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "Tun-Yuan Chang",
+    
+    "image": "https://tunyuanchang.github.io/images/avatar.png"
+    
+  },
+  "name":"Tun-Yuan Chang | Home",
+  "description":"\u003cblockquote\u003e\n\u003cp\u003e\u003cstrong\u003eTun-Yuan Chang\u003c\/strong\u003e, Kenneth Chandra, and Cheng-Hsin Hsu\u003cbr\u003e\nNational Tsing Hua University, Hsinchu, Taiwan\u003c\/p\u003e\n\u003c\/blockquote\u003e\n\u003cdiv class=\u0022button-row\u0022\u003e \n    \n    \n    \n    \n    \n    \n    \u003ca href=\u0022https:\/\/doi.org\/10.1145\/3728483.3760196\u0022 class=\u0022btn btn-custom\u0022\u003e\n        \u003ci class=\u0022fa fa-lg fa-file-pdf\u0022\u003e\u003c\/i\u003e \n         Paper\n    \u003c\/a\u003e\n    \n    \n\n\n    \n    \n    \n    \n    \n    \n    \u003ca href=\u0022https:\/\/github.com\/tunyuanchang\/MM25_LAVA\u0022 class=\u0022btn btn-custom\u0022\u003e\n        \u003ci class=\u0022fab fa-lg fa-github\u0022\u003e\u003c\/i\u003e \n         Code\n    \u003c\/a\u003e\n    \n    \n\n \u003c\/div\u003e\n\n\n\n\u003cdiv class=\u0022figure fig-100\u0022 \u003e\n  \n    \u003cimg class=\u0022fig-img\u0022 src=\u0022https:\/\/tunyuanchang.github.io\/images\/lava25_overview.jpg\u0022 \u003e\n  \n  \n\u003c\/div\u003e\n\n\u003ch3 id=\u0022abstract\u0022\u003eAbstract\u003c\/h3\u003e\n\u003cp\u003eTemporal correlation across video frames captures important dynamics that may be used to enhance the effectiveness of various video understanding tasks.\nTo the best of our knowledge, we are the first to propose integrating Neural Network (NN)-based temporal embedders with ordinary Large Vision-Language Models (LVLMs) to leverage temporal correlation in diverse downstream tasks.\nUnlike existing works in the literature that employ single-frame processing and frame concatenation, our proposed NN-based temporal embedders systematically encode temporal dependencies, thereby enriching the semantic understanding within LVLM frameworks. With diverse generator designs, the resulting LVLM-based NNs could work with diverse downstream video understanding tasks.\nWe validate the effectiveness and efficiency of our LVLM-based NNs using 3D human pose estimation as a representative case study.\nOur extensive experiments with a popular dataset reveal that, compared to single-frame processing, our proposed NNs achieve much shorter training time, shorter inference time, and lower GPU memory consumption.\nAmong our proposed LVLM-based NNs, the CNN-based temporal embedder achieves the highest accuracy at a manageable overhead: with an MPJPE (Mean Per Joint Position Error) of 201.88 mm, per-frame inference time of 0.803 ms, and GPU memory consumption of only 45.83 MiB per frame.\nWith our experiment results, we answer the open research question:\n\u003cstrong\u003eCan temporal correlation across frames be harvested to improve video understanding with LVLMs, compared to conventional single-frame processing and frame concatenation?\u003c\/strong\u003e In particular, our findings affirmatively answer this question, showing that explicitly capturing temporal correlation across frames enhances video understanding performance with LVLMs.\u003c\/p\u003e\n\u003ch3 id=\u0022design\u0022\u003eDesign\u003c\/h3\u003e\n\n\n\n\u003cdiv class=\u0022figure fig-100\u0022 \u003e\n  \n    \u003cimg class=\u0022fig-img\u0022 src=\u0022https:\/\/tunyuanchang.github.io\/images\/lava25_block.jpg\u0022  alt=\u0022Block diagram of our LVLM-based NNs for human pose estimation.\u0022\u003e\n  \n   \n    \u003cspan class=\u0022caption\u0022\u003eBlock diagram of our LVLM-based NNs for human pose estimation.\u003c\/span\u003e\n  \n\u003c\/div\u003e\n\n\u003ch3 id=\u0022citation\u0022\u003eCitation\u003c\/h3\u003e\n\u003cpre tabindex=\u00220\u0022\u003e\u003ccode class=\u0022language-bibtex=\u0022 data-lang=\u0022bibtex=\u0022\u003e@inproceedings{\n    chang2025harvesting,\n    title={Harvesting Temporal Correlation in Large Vision-Language Models: Using Pose Estimation as a Case Study},\n    author={Chang, Tun-Yuan and Chandra, Kenneth and Hsu, Cheng-Hsin},\n    booktitle={Proceedings of the 2nd International Workshop on Large Vision-Language Model Learning and Applications},\n    pages={3--12},\n    year={2025}\n}\n\u003c\/code\u003e\u003c\/pre\u003e",
+  "url":"https:\/\/tunyuanchang.github.io\/post\/lava25\/",
+  "keywords":"[video understanding, temooral correlation, large vision-language models]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.123.7 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Tun-Yuan Chang">
+<meta name="keywords" content="video understanding, temooral correlation, large vision-language models">
+<meta name="description" content="
+Tun-Yuan Chang, Kenneth Chandra, and Cheng-Hsin Hsu
+National Tsing Hua University, Hsinchu, Taiwan
+
+ 
+    
+    
+    
+    
+    
+    
+    
+         
+         Paper
+    
+    
+    
+
+
+    
+    
+    
+    
+    
+    
+    
+         
+         Code
+    
+    
+    
+
+ 
+
+
+
+
+  
+    
+  
+  
+
+
+Abstract
+Temporal correlation across video frames captures important dynamics that may be used to enhance the effectiveness of various video understanding tasks.
+To the best of our knowledge, we are the first to propose integrating Neural Network (NN)-based temporal embedders with ordinary Large Vision-Language Models (LVLMs) to leverage temporal correlation in diverse downstream tasks.
+Unlike existing works in the literature that employ single-frame processing and frame concatenation, our proposed NN-based temporal embedders systematically encode temporal dependencies, thereby enriching the semantic understanding within LVLM frameworks. With diverse generator designs, the resulting LVLM-based NNs could work with diverse downstream video understanding tasks.
+We validate the effectiveness and efficiency of our LVLM-based NNs using 3D human pose estimation as a representative case study.
+Our extensive experiments with a popular dataset reveal that, compared to single-frame processing, our proposed NNs achieve much shorter training time, shorter inference time, and lower GPU memory consumption.
+Among our proposed LVLM-based NNs, the CNN-based temporal embedder achieves the highest accuracy at a manageable overhead: with an MPJPE (Mean Per Joint Position Error) of 201.88 mm, per-frame inference time of 0.803 ms, and GPU memory consumption of only 45.83 MiB per frame.
+With our experiment results, we answer the open research question:
+Can temporal correlation across frames be harvested to improve video understanding with LVLMs, compared to conventional single-frame processing and frame concatenation? In particular, our findings affirmatively answer this question, showing that explicitly capturing temporal correlation across frames enhances video understanding performance with LVLMs.
+Design
+
+
+
+
+  
+    
+  
+   
+    Block diagram of our LVLM-based NNs for human pose estimation.
+  
+
+
+Citation
+@inproceedings{
+    chang2025harvesting,
+    title={Harvesting Temporal Correlation in Large Vision-Language Models: Using Pose Estimation as a Case Study},
+    author={Chang, Tun-Yuan and Chandra, Kenneth and Hsu, Cheng-Hsin},
+    booktitle={Proceedings of the 2nd International Workshop on Large Vision-Language Model Learning and Applications},
+    pages={3--12},
+    year={2025}
+}
+">
+
+
+<meta property="og:description" content="
+Tun-Yuan Chang, Kenneth Chandra, and Cheng-Hsin Hsu
+National Tsing Hua University, Hsinchu, Taiwan
+
+ 
+    
+    
+    
+    
+    
+    
+    
+         
+         Paper
+    
+    
+    
+
+
+    
+    
+    
+    
+    
+    
+    
+         
+         Code
+    
+    
+    
+
+ 
+
+
+
+
+  
+    
+  
+  
+
+
+Abstract
+Temporal correlation across video frames captures important dynamics that may be used to enhance the effectiveness of various video understanding tasks.
+To the best of our knowledge, we are the first to propose integrating Neural Network (NN)-based temporal embedders with ordinary Large Vision-Language Models (LVLMs) to leverage temporal correlation in diverse downstream tasks.
+Unlike existing works in the literature that employ single-frame processing and frame concatenation, our proposed NN-based temporal embedders systematically encode temporal dependencies, thereby enriching the semantic understanding within LVLM frameworks. With diverse generator designs, the resulting LVLM-based NNs could work with diverse downstream video understanding tasks.
+We validate the effectiveness and efficiency of our LVLM-based NNs using 3D human pose estimation as a representative case study.
+Our extensive experiments with a popular dataset reveal that, compared to single-frame processing, our proposed NNs achieve much shorter training time, shorter inference time, and lower GPU memory consumption.
+Among our proposed LVLM-based NNs, the CNN-based temporal embedder achieves the highest accuracy at a manageable overhead: with an MPJPE (Mean Per Joint Position Error) of 201.88 mm, per-frame inference time of 0.803 ms, and GPU memory consumption of only 45.83 MiB per frame.
+With our experiment results, we answer the open research question:
+Can temporal correlation across frames be harvested to improve video understanding with LVLMs, compared to conventional single-frame processing and frame concatenation? In particular, our findings affirmatively answer this question, showing that explicitly capturing temporal correlation across frames enhances video understanding performance with LVLMs.
+Design
+
+
+
+
+  
+    
+  
+   
+    Block diagram of our LVLM-based NNs for human pose estimation.
+  
+
+
+Citation
+@inproceedings{
+    chang2025harvesting,
+    title={Harvesting Temporal Correlation in Large Vision-Language Models: Using Pose Estimation as a Case Study},
+    author={Chang, Tun-Yuan and Chandra, Kenneth and Hsu, Cheng-Hsin},
+    booktitle={Proceedings of the 2nd International Workshop on Large Vision-Language Model Learning and Applications},
+    pages={3--12},
+    year={2025}
+}
+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[LAVA&#39;25] Harvesting Temporal Correlation in Large Vision-Language Models">
+<meta name="twitter:title" content="[LAVA&#39;25] Harvesting Temporal Correlation in Large Vision-Language Models">
+<meta property="og:url" content="https://tunyuanchang.github.io/post/lava25/">
+<meta property="twitter:url" content="https://tunyuanchang.github.io/post/lava25/">
+<meta property="og:site_name" content="Tun-Yuan Chang | Home">
+<meta property="og:description" content="
+Tun-Yuan Chang, Kenneth Chandra, and Cheng-Hsin Hsu
+National Tsing Hua University, Hsinchu, Taiwan
+
+ 
+    
+    
+    
+    
+    
+    
+    
+         
+         Paper
+    
+    
+    
+
+
+    
+    
+    
+    
+    
+    
+    
+         
+         Code
+    
+    
+    
+
+ 
+
+
+
+
+  
+    
+  
+  
+
+
+Abstract
+Temporal correlation across video frames captures important dynamics that may be used to enhance the effectiveness of various video understanding tasks.
+To the best of our knowledge, we are the first to propose integrating Neural Network (NN)-based temporal embedders with ordinary Large Vision-Language Models (LVLMs) to leverage temporal correlation in diverse downstream tasks.
+Unlike existing works in the literature that employ single-frame processing and frame concatenation, our proposed NN-based temporal embedders systematically encode temporal dependencies, thereby enriching the semantic understanding within LVLM frameworks. With diverse generator designs, the resulting LVLM-based NNs could work with diverse downstream video understanding tasks.
+We validate the effectiveness and efficiency of our LVLM-based NNs using 3D human pose estimation as a representative case study.
+Our extensive experiments with a popular dataset reveal that, compared to single-frame processing, our proposed NNs achieve much shorter training time, shorter inference time, and lower GPU memory consumption.
+Among our proposed LVLM-based NNs, the CNN-based temporal embedder achieves the highest accuracy at a manageable overhead: with an MPJPE (Mean Per Joint Position Error) of 201.88 mm, per-frame inference time of 0.803 ms, and GPU memory consumption of only 45.83 MiB per frame.
+With our experiment results, we answer the open research question:
+Can temporal correlation across frames be harvested to improve video understanding with LVLMs, compared to conventional single-frame processing and frame concatenation? In particular, our findings affirmatively answer this question, showing that explicitly capturing temporal correlation across frames enhances video understanding performance with LVLMs.
+Design
+
+
+
+
+  
+    
+  
+   
+    Block diagram of our LVLM-based NNs for human pose estimation.
+  
+
+
+Citation
+@inproceedings{
+    chang2025harvesting,
+    title={Harvesting Temporal Correlation in Large Vision-Language Models: Using Pose Estimation as a Case Study},
+    author={Chang, Tun-Yuan and Chandra, Kenneth and Hsu, Cheng-Hsin},
+    booktitle={Proceedings of the 2nd International Workshop on Large Vision-Language Model Learning and Applications},
+    pages={3--12},
+    year={2025}
+}
+">
+<meta name="twitter:description" content="
+Tun-Yuan Chang, Kenneth Chandra, and Cheng-Hsin Hsu
+National Tsing Hua University, Hsinchu, Taiwan
+
+ 
+    
+    
+    
+    
+    
+    
+    
+         
+         Paper
+    
+    
+    
+
+
+    
+    
+    
+    
+    
+    
+    
+         
+         Code
+    
+    
+    
+
+ 
+
+
+
+
+  
+    
+  
+  
+
+
+Abstract
+Temporal correlation across video frames captures important dynamics that may be used to enhance the effectiveness of various video understanding tasks.
+To the best of our knowledge, we are the first to propose integrating Neural Network (NN)-based temporal embedders with ordinary Large Vision-Language Models (LVLMs) to leverage temporal correlation in diverse downstream tasks.
+Unlike existing works in the literature that employ single-frame processing and frame concatenation, our proposed NN-based temporal embedders systematically encode temporal dependencies, thereby enriching the semantic understanding within LVLM frameworks. With diverse generator designs, the resulting LVLM-based NNs could work with diverse downstream video understanding tasks.
+We validate the effectiveness and efficiency of our LVLM-based NNs using 3D human pose estimation as a representative case study.
+Our extensive experiments with a popular dataset reveal that, compared to single-frame processing, our proposed NNs achieve much shorter training time, shorter inference time, and lower GPU memory consumption.
+Among our proposed LVLM-based NNs, the CNN-based temporal embedder achieves the highest accuracy at a manageable overhead: with an MPJPE (Mean Per Joint Position Error) of 201.88 mm, per-frame inference time of 0.803 ms, and GPU memory consumption of only 45.83 MiB per frame.
+With our experiment results, we answer the open research question:
+Can temporal correlation across frames be harvested to improve video understanding with LVLMs, compared to conventional single-frame processing and frame concatenation? In particular, our findings affirmatively answer this question, showing that explicitly capturing temporal correlation across frames enhances video understanding performance with LVLMs.
+Design
+
+
+
+
+  
+    
+  
+   
+    Block diagram of our LVLM-based NNs for human pose estimation.
+  
+
+
+Citation
+@inproceedings{
+    chang2025harvesting,
+    title={Harvesting Temporal Correlation in Large Vision-Language Models: Using Pose Estimation as a Case Study},
+    author={Chang, Tun-Yuan and Chandra, Kenneth and Hsu, Cheng-Hsin},
+    booktitle={Proceedings of the 2nd International Workshop on Large Vision-Language Model Learning and Applications},
+    pages={3--12},
+    year={2025}
+}
+">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2025-10-28T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2025-10-28T00:00:00">
+  
+  
+  
+  
+    
+      <meta property="article:tag" content="ACMMM">
+    
+      <meta property="article:tag" content="MLLM">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tunyuanchang.github.io/images/avatar.png">
+  <meta property="twitter:image" content="https://tunyuanchang.github.io/images/avatar.png">
+
+
+
+
+  <meta property="og:image" content="https://tunyuanchang.github.io/images/mm25.jpg">
+  <meta property="twitter:image" content="https://tunyuanchang.github.io/images/mm25.jpg">
+
+
+  <meta property="og:image" content="https://tunyuanchang.github.io/images/lava25_archi.jpg">
+  <meta property="twitter:image" content="https://tunyuanchang.github.io/images/lava25_archi.jpg">
+
+
+    <title>[LAVA&#39;25] Harvesting Temporal Correlation in Large Vision-Language Models</title>
+
+    <link rel="icon" href="https://tunyuanchang.github.io/icon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tunyuanchang.github.io/post/lava25/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tunyuanchang.github.io/css/style.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tunyuanchang.github.io/" aria-label="Go to homepage">Tun-Yuan Chang | Home</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tunyuanchang.github.io/#about" aria-label="Open the link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tunyuanchang.github.io/images/avatar.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tunyuanchang.github.io/#about" aria-label="Read more about the author">
+          <img class="sidebar-profile-picture" src="https://tunyuanchang.github.io/images/avatar.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Tun-Yuan Chang</h4>
+        
+          <h5 class="sidebar-profile-bio">CS student @ NTHU</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tunyuanchang.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tunyuanchang.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tunyuanchang.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tunyuanchang.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tunyuan.tw@gmail.com" target="_blank" rel="noopener" title="Email">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/tunyuanchang" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/tunyuanchang" target="_blank" rel="noopener" title="LinkedIn">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-linkedin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tunyuanchang.github.io/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-left
+              post-header-cover--partial"
+       style="background-image:url('/images/mm25.jpg')"
+       data-behavior="4">
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaOut
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      [LAVA&#39;25] Harvesting Temporal Correlation in Large Vision-Language Models
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2025-10-28T00:00:00Z">
+        
+  October 28, 2025
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <blockquote>
+<p><strong>Tun-Yuan Chang</strong>, Kenneth Chandra, and Cheng-Hsin Hsu<br>
+National Tsing Hua University, Hsinchu, Taiwan</p>
+</blockquote>
+<div class="button-row"> 
+    
+    
+    
+    
+    
+    
+    <a href="https://doi.org/10.1145/3728483.3760196" class="btn btn-custom">
+        <i class="fa fa-lg fa-file-pdf"></i> 
+         Paper
+    </a>
+    
+    
+
+
+    
+    
+    
+    
+    
+    
+    <a href="https://github.com/tunyuanchang/MM25_LAVA" class="btn btn-custom">
+        <i class="fab fa-lg fa-github"></i> 
+         Code
+    </a>
+    
+    
+
+ </div>
+
+
+
+<div class="figure fig-100" >
+  
+    <img class="fig-img" src="https://tunyuanchang.github.io/images/lava25_overview.jpg" >
+  
+  
+</div>
+
+<h3 id="abstract">Abstract</h3>
+<p>Temporal correlation across video frames captures important dynamics that may be used to enhance the effectiveness of various video understanding tasks.
+To the best of our knowledge, we are the first to propose integrating Neural Network (NN)-based temporal embedders with ordinary Large Vision-Language Models (LVLMs) to leverage temporal correlation in diverse downstream tasks.
+Unlike existing works in the literature that employ single-frame processing and frame concatenation, our proposed NN-based temporal embedders systematically encode temporal dependencies, thereby enriching the semantic understanding within LVLM frameworks. With diverse generator designs, the resulting LVLM-based NNs could work with diverse downstream video understanding tasks.
+We validate the effectiveness and efficiency of our LVLM-based NNs using 3D human pose estimation as a representative case study.
+Our extensive experiments with a popular dataset reveal that, compared to single-frame processing, our proposed NNs achieve much shorter training time, shorter inference time, and lower GPU memory consumption.
+Among our proposed LVLM-based NNs, the CNN-based temporal embedder achieves the highest accuracy at a manageable overhead: with an MPJPE (Mean Per Joint Position Error) of 201.88 mm, per-frame inference time of 0.803 ms, and GPU memory consumption of only 45.83 MiB per frame.
+With our experiment results, we answer the open research question:
+<strong>Can temporal correlation across frames be harvested to improve video understanding with LVLMs, compared to conventional single-frame processing and frame concatenation?</strong> In particular, our findings affirmatively answer this question, showing that explicitly capturing temporal correlation across frames enhances video understanding performance with LVLMs.</p>
+<h3 id="design">Design</h3>
+
+
+
+<div class="figure fig-100" >
+  
+    <img class="fig-img" src="https://tunyuanchang.github.io/images/lava25_block.jpg"  alt="Block diagram of our LVLM-based NNs for human pose estimation.">
+  
+   
+    <span class="caption">Block diagram of our LVLM-based NNs for human pose estimation.</span>
+  
+</div>
+
+<h3 id="citation">Citation</h3>
+<pre tabindex="0"><code class="language-bibtex=" data-lang="bibtex=">@inproceedings{
+    chang2025harvesting,
+    title={Harvesting Temporal Correlation in Large Vision-Language Models: Using Pose Estimation as a Case Study},
+    author={Chang, Tun-Yuan and Chandra, Kenneth and Hsu, Cheng-Hsin},
+    booktitle={Proceedings of the 2nd International Workshop on Large Vision-Language Model Learning and Applications},
+    pages={3--12},
+    year={2025}
+}
+</code></pre>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tunyuanchang.github.io/tags/acmmm/">ACMMM</a>
+
+  <a class="tag tag--primary tag--small" href="https://tunyuanchang.github.io/tags/mllm/">MLLM</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2025 Tun-Yuan Chang. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tunyuanchang.github.io/images/avatar.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Tun-Yuan Chang</h4>
+    
+      <div id="about-card-bio">CS student @ NTHU</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Research Assistant
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Taichung, Taiwan
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://tunyuanchang.github.io/images/cover_city.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tunyuanchang.github.io/js/script.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+
