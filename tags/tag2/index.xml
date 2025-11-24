@@ -13,7 +13,7 @@
       <link>http://localhost:1313/post/test/</link>
       <pubDate>Mon, 01 Jul 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/post/test/</guid>
-      <description>&lt;h3 id=&#34;draft&#34;&gt;Draft&lt;/h3&gt;&#xA;&lt;p&gt;&lt;a href=&#34;&#34;&gt;Links&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;h3 id=&#34;draft&#34;&gt;Draft&lt;/h3&gt;&#xA;&lt;div class=&#34;button-row&#34;&gt; &#xA;    &#xA;    &#xA;    &#xA;    &#xA;    &#xA;    &#xA;    &lt;a href=&#34;https://github.com/tunyuanchang/MM25_LAVA&#34; class=&#34;btn btn-custom&#34;&gt;&#xA;        &lt;i class=&#34;fab fa-lg fa-github&#34;&gt;&lt;/i&gt; &#xA;        Code&#xA;    &lt;/a&gt;&#xA;    &#xA;    &#xA;&#xA;&#xA;    &#xA;    &#xA;    &#xA;    &#xA;    &#xA;    &#xA;    &lt;a href=&#34;https://github.com/tunyuanchang/MM25_LAVA&#34; class=&#34;btn btn-custom&#34;&gt;&#xA;        &lt;i class=&#34;fab fa-lg fa-github&#34;&gt;&lt;/i&gt; &#xA;        Code&#xA;    &lt;/a&gt;&#xA;    &#xA;    &#xA;&#xA; &lt;/div&gt;&#xA;&lt;p&gt;abc&lt;br&gt;&#xA;def&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
