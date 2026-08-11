@@ -4,12 +4,19 @@ Link
 Theme  
 [https://github.com/kakawait/hugo-tranquilpeak-theme/](https://github.com/kakawait/hugo-tranquilpeak-theme/)  
 
-Source
+Source  
 [https://github.com/tunyuanchang/web](https://github.com/tunyuanchang/web)
 
 <details>
   <summary>Hugo</summary>
   command line  
+  in root folder
+
+  - create post
+
+  ```
+  hugo new post/<name>.md
+  ```
 
   - write and serve files from disk [-D draft]
   
@@ -25,4 +32,14 @@ Source
 
   - update github with files in `public` folder
     
+</details>
+
+<details>
+  <summary>HTML/CSS config</summary>
+  - 
+  ```
+  cd themes/tranquilpeak
+  npm run prod
+  ```
+
 </details>

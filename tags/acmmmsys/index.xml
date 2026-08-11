@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ACMMMSys on Tun-Yuan Chang | Home</title>
+    <link>http://localhost:1313/tags/acmmmsys/</link>
+    <description>Recent content in ACMMMSys on Tun-Yuan Chang | Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 08 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/acmmmsys/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[NOSSDAV&#39;26] Egocentric Daily Video Question Answering with Token-Efficient Storyboard Retrieval</title>
+      <link>http://localhost:1313/post/nossdav26/</link>
+      <pubDate>Sun, 08 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/nossdav26/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Zihao Ding &lt;sup&gt;1&lt;/sup&gt;, &lt;strong&gt;Tun-Yuan Chang&lt;/strong&gt;&lt;sup&gt;2&lt;/sup&gt;, Cheng-Hsin Hsu&lt;sup&gt;2&lt;/sup&gt;, and Yao Liu&lt;sup&gt;1&lt;/sup&gt;&lt;br&gt;&#xA;&lt;sup&gt;1&lt;/sup&gt; Rutgers University, NJ, USA; &lt;sup&gt;2&lt;/sup&gt; National Tsing Hua University, Hsinchu, Taiwan&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+    </item>
+  </channel>
+</rss>

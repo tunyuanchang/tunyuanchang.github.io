@@ -2118,11 +2118,11 @@ figure.highlight .line,
 .figure.clear {
   clear: both;
 }
-.figure.center, .figure.fig-25-c {
+.figure.center, .figure.fig-75-c, .figure.fig-50-c, .figure.fig-33-c, .figure.fig-25-c {
   width: calc(100% - 4px);
   margin: 2px auto;
 }
-.figure.center .fig-img, .figure.fig-25-c .fig-img {
+.figure.center .fig-img, .figure.fig-75-c .fig-img, .figure.fig-50-c .fig-img, .figure.fig-33-c .fig-img, .figure.fig-25-c .fig-img {
   margin: 2px auto;
 }
 .figure.left, .figure.fig-75, .figure.fig-50, .figure.fig-33, .figure.fig-25, .figure.fig-20 {
@@ -2149,10 +2149,19 @@ figure.highlight .line,
 .figure.fig-33 {
   width: calc(33.3% - 4px);
 }
+.figure.fig-33-c {
+  width: calc(33.3% - 4px);
+}
 .figure.fig-50 {
   width: calc(50% - 4px);
 }
+.figure.fig-50-c {
+  width: calc(50% - 4px);
+}
 .figure.fig-75 {
+  width: calc(75% - 4px);
+}
+.figure.fig-75-c {
   width: calc(75% - 4px);
 }
 .figure.fig-100 {
