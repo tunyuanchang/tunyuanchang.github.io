@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Distributed System on Tun-Yuan Chang | Home</title>
+    <link>http://localhost:1313/tags/distributed-system/</link>
+    <description>Recent content in Distributed System on Tun-Yuan Chang | Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 13 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/distributed-system/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[SEC&#39;26] DOME: Dynamic On-Premise MCP Edge Orchestration for AI Agents</title>
+      <link>http://localhost:1313/post/sec26/</link>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/sec26/</guid>
+      <description>DOME: Dynamic On-Premise MCP Edge Orchestration for AI Agents</description>
+    </item>
+  </channel>
+</rss>
