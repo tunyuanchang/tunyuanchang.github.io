@@ -6,12 +6,19 @@
     <description>Recent content in Tags on Tun-Yuan Chang | Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 01 Oct 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tunyuanchang.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Distributed System</title>
+      <link>https://tunyuanchang.github.io/tags/distributed-system/</link>
+      <pubDate>Thu, 01 Oct 2026 00:00:00 +0000</pubDate>
+      <guid>https://tunyuanchang.github.io/tags/distributed-system/</guid>
+      <description></description>
+    </item>
     <item>
       <title>VLM</title>
       <link>https://tunyuanchang.github.io/tags/vlm/</link>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 01 Oct 2026 00:00:00 +0000</pubDate>
       <guid>https://tunyuanchang.github.io/tags/vlm/</guid>
       <description></description>
     </item>
